@@ -1,6 +1,5 @@
 ---
 title: PetClinic Env Environment Server
-emoji: 🏥
 colorFrom: green
 colorTo: blue
 sdk: docker
@@ -15,25 +14,25 @@ tags:
   - healthcare
 ---
 
-# 🏥 PetClinic-Env
+# PetClinic-Env
 
 > **An OpenEnv-compatible reinforcement learning environment where an AI agent
 > automates the day-to-day operations of a veterinary clinic.**
 
 Built for the **Meta PyTorch OpenEnv Hackathon 2026**
-— Scaler School of Technology × Meta × HuggingFace
+- Scaler School of Technology x Meta x HuggingFace
 
 ---
 
 ## What Is This?
 
 PetClinic-Env simulates one full working day at a veterinary clinic.
-The AI agent acts as a clinic manager — scheduling appointments,
+The AI agent acts as a clinic manager - scheduling appointments,
 triaging walk-in patients by urgency, dispensing prescriptions,
 filing lab results, and discharging treated patients before the day ends.
 
 Every action the agent takes maps to a real task a human receptionist
-or clinic manager performs every single day. This is not a game or a toy —
+or clinic manager performs every single day. This is not a game or a toy -
 it is a faithful simulation of real clinical workflow.
 
 ---
@@ -54,12 +53,12 @@ blocks discharge).
 
 ---
 
-## Three Tasks — One Episode
+## Three Tasks - One Episode
 
 The agent plays one episode. At the end, three graders evaluate
 the same history from three different angles:
 
-### Task 1 — Appointment Scheduling (Easy)
+### Task 1 - Appointment Scheduling (Easy)
 **Objective:** Book overnight appointment requests into today's schedule
 without double-booking doctors or rooms, matching the right doctor
 specialisation and room type to each patient.
@@ -70,11 +69,11 @@ specialisation and room type to each patient.
 - Zero double-bookings at the same time slot
 - Completion rate (how many requests were scheduled)
 
-**Expected scores:** Random agent ~0.25 · Good agent 0.85+
+**Expected scores:** Random agent ~0.25 | Good agent 0.85+
 
 ---
 
-### Task 2 — Walk-in Triage (Medium)
+### Task 2 - Walk-in Triage (Medium)
 **Objective:** Task 1 + handle unexpected walk-in patients mid-episode
 by urgency. Critical walk-ins must be seen before moderate or minor ones.
 
@@ -84,11 +83,11 @@ by urgency. Critical walk-ins must be seen before moderate or minor ones.
 - Critical patients never queued when a doctor is available
 - Minor patients not inserted ahead of critical ones
 
-**Expected scores:** Random agent ~0.30 · Good agent 0.70+
+**Expected scores:** Random agent ~0.30 | Good agent 0.70+
 
 ---
 
-### Task 3 — Full Day Operations (Hard)
+### Task 3 - Full Day Operations (Hard)
 **Objective:** Task 1 + Task 2 + manage the complete treatment pipeline.
 Dispense prescriptions, file lab results to correct patients, discharge
 all treated patients, and schedule follow-up appointments for chronic cases.
@@ -100,7 +99,7 @@ all treated patients, and schedule follow-up appointments for chronic cases.
 - Prescription dispensing completion (weighted 25%)
 - Follow-up booking rate (weighted 15%)
 
-**Expected scores:** Random agent ~0.15 · Good agent 0.60+
+**Expected scores:** Random agent ~0.15 | Good agent 0.60+
 
 ---
 
@@ -133,7 +132,7 @@ Every step the agent receives a `PetclinicObservation` containing:
 
 | Field | Type | Description |
 |---|---|---|
-| `step` | int | Current step (0–20) |
+| `step` | int | Current step (0-20) |
 | `time_of_day` | str | Simulated clinic time e.g. "09:30" |
 | `appointment_requests` | list | Unbooked patients needing scheduling |
 | `scheduled_appointments` | list | Already booked appointments |
@@ -148,7 +147,7 @@ Every step the agent receives a `PetclinicObservation` containing:
 | `task1_score_so_far` | float | Running Task 1 score |
 | `task2_score_so_far` | float | Running Task 2 score |
 | `task3_score_so_far` | float | Running Task 3 score |
-| `valid_actions` | list | Action mask — only attempt these |
+| `valid_actions` | list | Action mask - only attempt these |
 | `context` | str | Plain English summary of current clinic state |
 | `done` | bool | True when episode ends |
 | `reward` | float | Reward earned this step |
@@ -168,13 +167,13 @@ Every step the agent receives a `PetclinicObservation` containing:
 | Lab result filed correctly | +0.15 |
 | Prescription dispensed | +0.15 |
 | Follow-up appointment booked | +0.10 |
-| Double-booking detected | −0.30 |
-| Wrong doctor specialisation | −0.20 |
-| Wrong room type | −0.20 |
-| Critical patient missed | −0.40 |
-| Minor patient over critical | −0.25 |
-| Invalid action attempted | −0.10 |
-| Doctor idle with patients waiting | −0.05 |
+| Double-booking detected | -0.30 |
+| Wrong doctor specialisation | -0.20 |
+| Wrong room type | -0.20 |
+| Critical patient missed | -0.40 |
+| Minor patient over critical | -0.25 |
+| Invalid action attempted | -0.10 |
+| Doctor idle with patients waiting | -0.05 |
 
 ---
 
@@ -182,24 +181,24 @@ Every step the agent receives a `PetclinicObservation` containing:
 
 ```
 petclinic_env/
-├── Dockerfile                          ← Container (root level, required)
-├── inference.py                        ← Baseline script (root level, required)
-├── README.md                           ← This file
-├── models.py                           ← Pydantic Action + Observation models
-├── client.py                           ← WebSocket EnvClient
-├── openenv.yaml                        ← OpenEnv spec metadata
-├── pyproject.toml                      ← Package definition
-├── uv.lock                             ← Locked dependencies
-└── server/
-    ├── app.py                          ← FastAPI server (create_app)
-    └── petclinic_env_environment.py    ← Core game logic + graders
+ Dockerfile                           Container (root level, required)
+ inference.py                         Baseline script (root level, required)
+ README.md                            This file
+ models.py                            Pydantic Action + Observation models
+ client.py                            WebSocket EnvClient
+ openenv.yaml                         OpenEnv spec metadata
+ pyproject.toml                       Package definition
+ uv.lock                              Locked dependencies
+ server/
+     app.py                           FastAPI server (create_app)
+     petclinic_env_environment.py     Core game logic + graders
 ```
 
 ---
 
 ## Quick Start
 
-### Option 1 — Run locally
+### Option 1 - Run locally
 
 ```bash
 # 1. Clone or download the project
@@ -221,7 +220,7 @@ export ENV_URL="http://localhost:8000"
 uv run python inference.py
 ```
 
-### Option 2 — Using .env file
+### Option 2 - Using .env file
 
 Create a `.env` file in the project root:
 ```
@@ -238,7 +237,7 @@ uv run uvicorn server.app:app --host 0.0.0.0 --port 8000
 uv run python inference.py
 ```
 
-### Option 3 — Connect to HuggingFace Space
+### Option 3 - Connect to HuggingFace Space
 
 ```bash
 export ENV_URL="https://your-username-petclinic-env.hf.space"
@@ -269,10 +268,10 @@ After deployment your space will be available at:
 `https://huggingface.co/spaces/your-username/petclinic-env`
 
 The deployed space includes:
-- **Web interface** at `/web` — interactive UI for exploring the environment
-- **API docs** at `/docs` — full OpenAPI interface
-- **Health check** at `/health` — deployment verification
-- **WebSocket** at `/ws` — persistent session for inference
+- **Web interface** at `/web` - interactive UI for exploring the environment
+- **API docs** at `/docs` - full OpenAPI interface
+- **Health check** at `/health` - deployment verification
+- **WebSocket** at `/ws` - persistent session for inference
 
 ---
 
@@ -283,7 +282,7 @@ The deployed space includes:
 - **3 rooms:** General examination, Surgery, Consultation
 - **6 appointment requests** arrive at episode start
 - **4 walk-in patients** arrive at random steps between step 3 and step 17
-- **20 steps** per episode (simulates one clinic day 09:00–17:00)
+- **20 steps** per episode (simulates one clinic day 09:00-17:00)
 
 ### Patient Properties
 Each patient has: species (dog/cat/rabbit/bird), condition, severity (critical/moderate/minor),
@@ -294,7 +293,7 @@ and follow-up needs.
 - Doctors have fatigue that increases each busy step
 - Supplies (vaccines, bandages, anaesthesia, antibiotics) are limited
 - Rooms can only hold one patient at a time
-- Treatments take 1–3 steps to complete
+- Treatments take 1-3 steps to complete
 
 ---
 
@@ -316,7 +315,7 @@ Scores vary per episode due to random patient generation and walk-in timing.
 
 Built by **Team DEXTER** for the
 Meta PyTorch OpenEnv Hackathon 2026
-— Scaler School of Technology, India
+- Scaler School of Technology, India
 
 - Surendra Purohit A (Team Lead)
 - Sriram R
@@ -326,4 +325,4 @@ Meta PyTorch OpenEnv Hackathon 2026
 
 ## License
 
-BSD 3-Clause License — same as OpenEnv core.
+BSD 3-Clause License - same as OpenEnv core.

@@ -1,39 +1,39 @@
 {
   "model": "Qwen/Qwen2.5-72B-Instruct",
-  "env_url": "http://localhost:8000",
+  "env_url": "https://Sriram611-petclinic-env.hf.space",
   "episodes": [
     {
       "episode": 1,
       "steps": 20,
-      "total_reward": 3.05,
+      "total_reward": 3.35,
       "task1_score": 1.0,
       "task2_score": 1.0,
-      "task3_score": 0.7317,
-      "score": 0.9106
+      "task3_score": 0.9183,
+      "score": 0.9728
     },
     {
       "episode": 2,
       "steps": 20,
-      "total_reward": 1.9,
-      "task1_score": 0.881,
-      "task2_score": 0.9524,
-      "task3_score": 0.8807,
-      "score": 0.9047
+      "total_reward": 3.25,
+      "task1_score": 1.0,
+      "task2_score": 1.0,
+      "task3_score": 0.8133,
+      "score": 0.9378
     },
     {
       "episode": 3,
       "steps": 20,
-      "total_reward": 1.05,
-      "task1_score": 0.7917,
-      "task2_score": 0.9167,
-      "task3_score": 0.8525,
-      "score": 0.8536
+      "total_reward": 2.3,
+      "task1_score": 0.95,
+      "task2_score": 0.98,
+      "task3_score": 0.889,
+      "score": 0.9397
     }
   ],
   "averages": {
-    "task1": 0.8909,
-    "task2": 0.9564,
-    "task3": 0.8216,
-    "score": 0.8896
+    "task1": 0.9833,
+    "task2": 0.9933,
+    "task3": 0.8735,
+    "score": 0.9501
   }
 }
