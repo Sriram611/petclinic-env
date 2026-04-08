@@ -39,18 +39,38 @@ it is a faithful simulation of real clinical workflow.
 
 ## Why This Is Novel
 
-No veterinary or healthcare clinic simulation exists anywhere in the
-OpenEnv ecosystem. Every existing environment is either a game
-(Wordle, Chess, Catch) or a developer tool (code execution, echo).
-PetClinic-Env is the first real-world healthcare operations environment
-in the OpenEnv community.
+Veterinary clinic operations involve a class of real-world decision-making
+that has never been modelled as a reinforcement learning environment.
+Every existing OpenEnv environment falls into one of two categories —
+games (Wordle, Chess, Catch, 2048) or developer tools (code execution,
+echo server, browser automation). PetClinic-Env is the first environment
+in the OpenEnv ecosystem that simulates a real healthcare operations
+workflow.
 
-Unlike stock trading environments (FinRL, gym-trading-env), this
-environment simulates human decision-making under resource constraints
-with time pressure, urgency levels, and cascading consequences
-(a patient who waits too long deteriorates; a prescription not dispensed
-blocks discharge).
+The domain is genuinely challenging for AI agents because clinic
+management involves cascading dependencies — a prescription cannot be
+dispensed until treatment is complete, a patient cannot be discharged
+until a prescription is dispensed, and a follow-up cannot be scheduled
+until a patient is discharged. These sequential constraints, combined
+with concurrent resource management across doctors, rooms, and supplies,
+create a decision space that is simple enough to define clearly but
+difficult enough to solve optimally.
 
+Unlike scheduling benchmarks that use abstract job queues, PetClinic-Env
+grounds every decision in a recognisable human context. The agent reads
+patient names, species, conditions, and severity levels — the same
+information a real clinic receptionist processes every morning. This
+makes the environment immediately interpretable to any evaluator, which
+matters for both research reproducibility and real-world deployment.
+
+The three-task structure is also novel in its design. Rather than running
+separate episodes for each task, all three graders evaluate the same
+episode history simultaneously — meaning the agent cannot optimise for
+one task at the expense of another. An agent that schedules appointments
+perfectly but ignores walk-in triage will score well on Task 1 and poorly
+on Task 2 and 3. This joint evaluation more accurately reflects how
+real clinic managers work, where every decision affects multiple
+performance dimensions at once.
 ---
 
 ## Three Tasks - One Episode
