@@ -71,6 +71,7 @@ perfectly but ignores walk-in triage will score well on Task 1 and poorly
 on Task 2 and 3. This joint evaluation more accurately reflects how
 real clinic managers work, where every decision affects multiple
 performance dimensions at once.
+
 ---
 
 ## Three Tasks - One Episode
