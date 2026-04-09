@@ -3,7 +3,7 @@ title: PetClinic Env Environment Server
 colorFrom: green
 colorTo: blue
 sdk: docker
-pinned: false
+pinned: true
 app_port: 8000
 base_path: /web
 tags:
@@ -41,9 +41,7 @@ it is a faithful simulation of real clinical workflow.
 
 Veterinary clinic operations involve a class of real-world decision-making
 that has never been modelled as a reinforcement learning environment.
-Every existing OpenEnv environment falls into one of two categories —
-games (Wordle, Chess, Catch, 2048) or developer tools (code execution,
-echo server, browser automation). PetClinic-Env is the first environment
+PetClinic-Env is the first environment
 in the OpenEnv ecosystem that simulates a real healthcare operations
 workflow.
 
