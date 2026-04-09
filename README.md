@@ -274,8 +274,6 @@ uv run python inference.py
 openenv validate --url http://localhost:8000
 ```
 
-All checks must pass before submission.
-
 ---
 
 ## Deploy to HuggingFace Spaces
@@ -336,7 +334,7 @@ Scores vary per episode due to random patient generation and walk-in timing.
 
 Built by **Team DEXTER** for the
 Meta PyTorch OpenEnv Hackathon 2026
-- Scaler School of Technology, India
+Scaler School of Technology, India
 
 - Surendra Purohit A (Team Lead)
 - Sriram R
